@@ -1,6 +1,19 @@
 let human_score = 0;
 let computer_score = 0;
 
+playGame();
+
+
+function playGame(){
+    
+    for(let i = 0; i < 5; i++){
+        let human_choice = getHumanChoice();
+        let computer_choice = getComputerChoice();
+        playRound(human_choice, computer_choice);
+        printScore();
+    }
+}
+
 function getComputerChoice(){
 
     let ran_number = (Math.round(Math.random() *10)) % 3;
@@ -19,10 +32,10 @@ function getHumanChoice(){
             console.log("Invalid input, try again");
             do_again = true;
         }
-    
+
     }while(do_again);
 
-    return input_user;
+    return +input_user;
 }
 
 function fromNumToWord(number){
@@ -41,11 +54,18 @@ function playRound(human_choice, computer_choice){
 
     console.log(`You choosed ${fromNumToWord(human_choice)}, the computer choosed ${fromNumToWord(computer_choice)}`)
     
-    if(human_choice < computer_choice || human_choice === 3 && computer_choice === 1){
+    if(human_choice === ((computer_choice+2) % 3)){
         console.log("You loose");
+        computer_score++;
     }else if(human_choice === computer_choice){
         console.log("Draw");
     }else{
         console.log("You win!!!");
+        human_score++;
     }
 }
+
+function printScore(){
+    console.log(`User score: ${human_score}, computer score: ${computer_score}`);
+}
+
