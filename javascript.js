@@ -1,23 +1,11 @@
-
-
+let human_score = 0;
+let computer_score = 0;
 
 function getComputerChoice(){
 
     let ran_number = (Math.round(Math.random() *10)) % 3;
-
-    switch (ran_number){
-        case 0:
-        return "rock";
-        case 1:
-        return "paper";
-        case 2:
-        return "scissors";
-    }
-
+    return ++ran_number;
 }
-
-alert(getComputerChoice());
-
 
 function getHumanChoice(){
     let do_again = false;
@@ -37,4 +25,27 @@ function getHumanChoice(){
     return input_user;
 }
 
-console.log(getHumanChoice());
+function fromNumToWord(number){
+    switch (number){
+        case 1:
+        return "Rock";
+        case 2:
+        return "Paper";
+        case 3:
+        return "Scissors";
+    }
+}
+ 
+
+function playRound(human_choice, computer_choice){
+
+    console.log(`You choosed ${fromNumToWord(human_choice)}, the computer choosed ${fromNumToWord(computer_choice)}`)
+    
+    if(human_choice < computer_choice || human_choice === 3 && computer_choice === 1){
+        console.log("You loose");
+    }else if(human_choice === computer_choice){
+        console.log("Draw");
+    }else{
+        console.log("You win!!!");
+    }
+}
